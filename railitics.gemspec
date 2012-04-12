@@ -7,8 +7,8 @@ require "railitics/version"
 Gem::Specification.new do |s|
   s.name        = "railitics"
   s.version     = Railitics::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Steve Faulkner"]
+  s.email       = ["southpolesteve@gmail.com"]
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of Railitics."
   s.description = "TODO: Description of Railitics."
