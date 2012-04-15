@@ -22,8 +22,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'sqlite3'
   s.add_dependency "pry-rails"
   s.add_dependency "uuidtools"
+  s.add_dependency 'devise'
   # s.add_dependency "jquery-rails"
 
+  s.add_development_dependency 'mongoid'
+  s.add_development_dependency 'bson_ext'
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
   s.add_development_dependency "factory_girl_rails"
