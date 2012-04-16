@@ -1,0 +1,15 @@
+<h1>The Home Page</h1>
+
+<% session.keys.each do |key| %>
+  <p>
+    <%= key.to_s %>
+    <%= session[key] %>
+  </p>
+<% end %>
+
+<%= link_to "Home", root_path %>
+<%= link_to "Sign in", new_user_session_path %>
+<%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+<%= link_to "POST", post_path, method: "post" %>
+<%= link_to "PUT", put_path, method: "put" %>
+<%= link_to "DELETE", delete_path, method: "delete" %>
