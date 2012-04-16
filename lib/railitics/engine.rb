@@ -19,14 +19,16 @@ end
 module Railitics
   module InstanceMethods
     def track_user
-      set_cookie
-      if session[:railitics] || !current_user
-        log_request uuid: session[:railitics]
-      end
-      if current_user
-        log_request user_id: current_user.id
-        if session[:railitics]
-          update_all_session_requests
+      unless user_is_a_bot?
+        set_cookie
+        if session[:railitics] || !current_user
+          log_request uuid: session[:railitics]
+        end
+        if current_user
+          log_request user_id: current_user.id
+          if session[:railitics]
+            update_all_session_requests
+          end
         end
       end
       yield
@@ -41,13 +43,19 @@ module Railitics
     end
 
     def log_request(opts = {})
-      opts.merge! params: params, method: (params['_method'] || request.method).upcase
+      opts.merge! params: params, 
+                  method: (params['_method'] || request.method).upcase,
+                  referrer: request.headers["HTTP_REFERER"]
       @request_log = Railitics::Request.create(opts)
     end
 
     def update_all_session_requests
       Railitics::Request.where(uuid: session[:railitics]).update_all(user_id: current_user.id)
       session[:railitics] = nil
+    end
+
+    def user_is_a_bot?
+      false #Need to implement checking for bots here
     end
 
   end

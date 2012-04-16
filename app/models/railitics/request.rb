@@ -7,6 +7,7 @@ module Railitics
     field :user_id, type: Integer
     field :params, type: Hash
     field :method, type: String
+    field :referrer, type: String
 
     def controller
       params["controller"]
