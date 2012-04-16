@@ -228,5 +228,5 @@ end
  Devise::RegistrationsController,
  Devise::PasswordsController
 ].each do |devise_controller_class|
-  devise_controller_class.before_filter :track_user
+  devise_controller_class.around_filter :track_user
 end
