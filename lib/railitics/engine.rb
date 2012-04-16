@@ -23,12 +23,13 @@ module Railitics
       if session[:railitics] || !current_user
         log_request uuid: session[:railitics]
       end
-      if current_user && session[:railitics]
+      if current_user
         log_request user_id: current_user.id
         if session[:railitics]
           update_all_session_requests
         end
       end
+      yield
     end
 
     private
@@ -40,8 +41,8 @@ module Railitics
     end
 
     def log_request(opts = {})
-      opts.merge params: params, method: request.method
-      Railitics::Request.create(opts)
+      opts.merge! params: params, method: (params['_method'] || request.method).upcase
+      @request_log = Railitics::Request.create(opts)
     end
 
     def update_all_session_requests
