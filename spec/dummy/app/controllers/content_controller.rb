@@ -1,10 +1,14 @@
 class ContentController < ApplicationController
   around_filter :track_user
 
-  def home
+  def index
   end
 
   def post
+    redirect_to root_path
+  end
+
+  def put
     redirect_to root_path
   end
 
