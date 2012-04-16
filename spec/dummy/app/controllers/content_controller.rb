@@ -1,3 +1,5 @@
+require 'pry'
+
 class ContentController < ApplicationController
   around_filter :track_user
 
