@@ -187,6 +187,7 @@ DEPENDENCIES
   bson_ext
   capybara
   factory_girl_rails
+  haml-rails
   jquery-rails
   mongoid
   pry-rails

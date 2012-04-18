@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title Railitics
+    = stylesheet_link_tag "railitics/application", :media => "all"
+    = javascript_include_tag "railitics/application"
+    = csrf_meta_tags
+  %body
+    .container
+      = yield

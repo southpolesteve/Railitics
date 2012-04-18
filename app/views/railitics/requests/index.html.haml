@@ -1,0 +1,21 @@
+%h1
+  = link_to "Railitics", root_path
+%table.table.table-striped.table-bordered.table-condensed
+  %thead
+    %tr
+      %th Method
+      %th Controller
+      %th Action
+      %th User ID or Request UUID
+      %th Referral URL
+      %th Time
+  %tbody
+    - @requests.each do |request|
+      %tr
+        %td= request.method
+        %td= request.controller
+        %td= request.action
+        %td= request.user_id ? link_to(request.user_id, root_path(user_id: request.user_id)) : link_to(request.uuid, root_path(uuid: request.uuid))
+        %td= request.referrer
+        %td= request.created_at.to_s
+
