@@ -45,5 +45,31 @@ describe "user_tracking" do
     Railitics::Request.all.map(&:user_id).uniq.first.should eq(user.id)
   end
 
+  context "a bot visits the site" do
 
+    it "ignores googlebot" do
+      options = page.driver.instance_variable_get("@options")
+      options[:headers] = {"HTTP_USER_AGENT" => "This is the googlebot"}
+      page.driver.instance_variable_set "@options", options
+      visit root_path
+      Railitics::Request.count.should eq(0)
+    end
+
+    it "ignores generic bot" do
+      options = page.driver.instance_variable_get("@options")
+      options[:headers] = {"HTTP_USER_AGENT" => "genericbot"}
+      page.driver.instance_variable_set "@options", options
+      visit root_path
+      Railitics::Request.count.should eq(0)
+    end
+
+    it "ignores the msn bot" do
+      options = page.driver.instance_variable_get("@options")
+      options[:headers] = {"HTTP_USER_AGENT" => "The msnbot"}
+      page.driver.instance_variable_set "@options", options
+      visit root_path
+      Railitics::Request.count.should eq(0)
+    end
+
+  end
 end

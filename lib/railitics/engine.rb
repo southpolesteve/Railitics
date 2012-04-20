@@ -45,7 +45,7 @@ module Railitics
     def log_request(opts = {})
       opts.merge! params: params, 
                   method: (params['_method'] || request.method).upcase,
-                  referrer: request.headers["HTTP_REFERER"]
+                  referrer: request.headers["HTTP_REFERER"] 
       @request_log = Railitics::Request.create(opts)
     end
 
@@ -55,7 +55,14 @@ module Railitics
     end
 
     def user_is_a_bot?
-      false #Need to implement checking for bots here
+      user_agent = request.env["HTTP_USER_AGENT"].try(:downcase)
+      bot_array = [ 'msnbot', 'yahoo!','googlebot', 'bot' ]
+      bot_array.each do |bot|
+        if user_agent && user_agent.include?(bot)
+          return true
+        end
+      end
+      false
     end
 
   end
