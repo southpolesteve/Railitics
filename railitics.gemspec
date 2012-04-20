@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Railitics::VERSION
   s.authors     = ["Steve Faulkner"]
   s.email       = ["southpolesteve@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Railitics."
-  s.description = "TODO: Description of Railitics."
+  s.homepage    = "https://github.com/southpolesteve/Railitics"
+  s.summary     = "An analytics engine for Rails"
+  s.description = "An analytics engine for Rails"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
