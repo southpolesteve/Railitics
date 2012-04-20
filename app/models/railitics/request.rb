@@ -4,6 +4,7 @@ module Railitics
   class Request
     include Mongoid::Document
     include Mongoid::Timestamps::Created
+
     field :uuid, type: String
     field :user_id, type: Integer
     field :params, type: Hash

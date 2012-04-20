@@ -18,4 +18,5 @@
         %td= request.user_id ? link_to(request.user_id, root_path(user_id: request.user_id)) : link_to(request.uuid, root_path(uuid: request.uuid))
         %td= request.referrer
         %td= request.created_at.to_s
+= paginate @requests, :theme => 'twitter-bootstrap'
 
